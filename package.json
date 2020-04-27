@@ -1,0 +1,24 @@
+{
+  "name": "CSCE411_finalProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bruce98Wayne/SalaryDataAnalysis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bruce98Wayne/SalaryDataAnalysis/issues"
+  },
+  "homepage": "https://github.com/Bruce98Wayne/SalaryDataAnalysis#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
