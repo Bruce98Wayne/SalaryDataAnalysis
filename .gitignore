@@ -1,0 +1,10 @@
+#junk
+.DS_Store
+
+#ignore notebook checkpoints
+.ipynb_checkpoints
+
+#node modules
+/node_modules
+
+package-lock.json
