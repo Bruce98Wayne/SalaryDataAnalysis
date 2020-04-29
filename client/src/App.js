@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component }from 'react';
 import './App.css';
 import * as d3 from 'd3'
 import * as d3tip from 'd3-tip'
 import BarChart from './barChart'
 import ScatterPlot from './scatterPlot'
-
+import Pie from './pie'
 class App extends Component {
 state = {
     data: null,
@@ -46,13 +46,34 @@ state = {
    {state: "Kentucky", population: 4380415, gdp: 146829} ]
 
   render() {
+
+    const generateData = (value, length = 5) =>
+    d3.range(length).map((item, index) => ({
+      date: index,
+      value: value === null || value === undefined ? Math.random() * 100 : value
+    }));
+ 
+  const data = generateData();
+
     return (
       <div>
-        <BarChart tempData={this.tempData} top={0}/>
-        <ScatterPlot tempData={this.tempData} top={0}/>
-        
-        {/* <BarChart tempData={this.tempData} top={300}/> */}
+        <div>
+        <span className="label">SVG Elements</span>
+        <Pie
+          data={this.tempData}
+          width={200}
+          height={200}
+          innerRadius={50}
+          outerRadius={100}
+        />
       </div>
+      <BarChart tempData={this.tempData} top={0}/>
+      <ScatterPlot tempData={this.tempData} top={0}/>
+    </div>
+       
+        
+        /* <BarChart tempData={this.tempData} top={300}/> */
+      // </div>
     );
   }
 }

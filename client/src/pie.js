@@ -20,7 +20,7 @@ const Arc = ({ data, index, createArc, colors, format }) => (
 const Pie = props => {
   const createPie = d3
     .pie()
-    .value(d => d.value)
+    .value(d => d.population)
     .sort(null);
 
   const createArc = d3
