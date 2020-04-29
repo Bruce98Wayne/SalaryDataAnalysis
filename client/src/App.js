@@ -46,15 +46,6 @@ state = {
    {state: "Kentucky", population: 4380415, gdp: 146829} ]
 
   render() {
-
-    const generateData = (value, length = 5) =>
-    d3.range(length).map((item, index) => ({
-      date: index,
-      value: value === null || value === undefined ? Math.random() * 100 : value
-    }));
- 
-  const data = generateData();
-
     return (
       <div>
         <div>
