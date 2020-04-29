@@ -132,13 +132,14 @@ app.post('/load', async (req, res) => {
 });
 
 app.get('/query/', (req, res) => {
-  const query = req.query.q;
+  const query = req.query;
   console.log("Query is: ", query)
-  db.query(query, { type: QueryTypes.SELECT, logging: false }).then((data) => {
+  // db.query(query, { type: QueryTypes.SELECT, logging: false }).then((data) => {
   // console.log("Query is: ", req.query.q)
-  console.log("Result is: ")
-      res.send(data)
-    })
+  // console.log("Result is: ")
+      res.send(query) 
+       //   })
+  // res.send
 });
 
 // create a GET route
