@@ -12,8 +12,18 @@ const Arc = ({ data, index, createArc, colors, format }) => (
       fill="white"
       fontSize="10"
     >
-      {format(data.value)}
+      {`${data.data.state}`}
     </text>
+    {/* {console.log(createArc.centroid(data))}
+    <text
+      transform={`translate(${centroid})`}
+      textAnchor="middle"
+      alignmentBaseline="middle"
+      fill="white"
+      fontSize="10"
+    >
+      {`${data.value}`}
+    </text> */}
   </g>
 );
 
@@ -31,7 +41,6 @@ const Pie = props => {
     const colors = d3.scaleOrdinal(d3.schemeCategory10);
   const format = d3.format(".2f");
   const data = createPie(props.data);
-
   return (
     <svg width={props.width} height={props.height}>
       <g transform={`translate(${props.outerRadius} ${props.outerRadius})`}>

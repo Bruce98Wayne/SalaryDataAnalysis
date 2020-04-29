@@ -5,6 +5,7 @@ import * as d3tip from 'd3-tip'
 import BarChart from './barChart'
 import ScatterPlot from './scatterPlot'
 import Pie from './pie'
+import Form from './form'
 class App extends Component {
 state = {
     data: null,
@@ -45,13 +46,20 @@ state = {
    {state: "Kansas", population: 2885905, gdp: 118523},
    {state: "Kentucky", population: 4380415, gdp: 146829} ]
 
+   tempData1 = [ {state: "Alabama", population: 4822023, gdp: 157272},
+   {state: "Alaska", population: 731449, gdp: 44732},
+   {state: "Arizona", population: 6553255, gdp: 230641},
+   {state: "Arkansas", population: 2949131, gdp: 93892},
+   {state: "California", population: 38041430, gdp: 1751002}, ]
+
   render() {
     return (
       <div>
+        <Form />
         <div>
         <span className="label">SVG Elements</span>
         <Pie
-          data={this.tempData}
+          data={this.tempData1}
           width={200}
           height={200}
           innerRadius={50}
