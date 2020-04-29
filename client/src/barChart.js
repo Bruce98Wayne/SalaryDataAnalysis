@@ -14,23 +14,11 @@ constructor(props) {
         allgroup: null,
         tooltip: null,
     };
-    console.log(props)
     }
 
   componentDidMount() {
       this.createBarPlot()
   }
-
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
 
   setChart() {
     const margin = {top: 20, right: 20, bottom: 70, left: 40},
@@ -65,8 +53,25 @@ constructor(props) {
   numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+  sortBar = () => {
+      
+        const this1 = this
+        this1.state.chart.selectAll("rect")
+            .sort(function(a, b) {
+                return d3.ascending(a.population, b.population);
+            })
+            .transition()
+            .delay(function (d, i) {
+            return i * 20;
+            })
+            .duration(1000)
+            .attr("x", function (d, i) {
+            return this1.state.x(i);
+            });
+    }
+
   createBarPlot = async () => {
-    console.log(this.props.tempData)
     await this.setChart()
     var this1 = this;
     
@@ -92,8 +97,8 @@ constructor(props) {
                   .on('mouseout', function(d){
                       d3.select(this).attr("fill", "turquoise")
                       this1.state.tooltip.hide(d, this);
-                  });
-                //   .on("click",sortBar);
+                  })
+                  .on("click",this1.sortBar);
 
   }
 

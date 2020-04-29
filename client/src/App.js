@@ -3,6 +3,8 @@ import './App.css';
 import * as d3 from 'd3'
 import * as d3tip from 'd3-tip'
 import BarChart from './barChart'
+import ScatterPlot from './scatterPlot'
+
 class App extends Component {
 state = {
     data: null,
@@ -46,7 +48,9 @@ state = {
   render() {
     return (
       <div>
-        <BarChart tempData={this.tempData} top={0}/>
+        {/* <BarChart tempData={this.tempData} top={0}/> */}
+        <ScatterPlot tempData={this.tempData} top={0}/>
+        
         {/* <BarChart tempData={this.tempData} top={300}/> */}
       </div>
     );
