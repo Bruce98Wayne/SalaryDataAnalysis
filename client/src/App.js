@@ -48,7 +48,7 @@ state = {
   render() {
     return (
       <div>
-        {/* <BarChart tempData={this.tempData} top={0}/> */}
+        <BarChart tempData={this.tempData} top={0}/>
         <ScatterPlot tempData={this.tempData} top={0}/>
         
         {/* <BarChart tempData={this.tempData} top={300}/> */}
