@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Bruce98Wayne/SalaryDataAnalysis#readme",
   "dependencies": {
+    "csv-parser": "^2.3.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.7",

@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const walk = require('walk-sync')
-const databaseConfig = require("../config/config.json")
+const databaseConfig = require("./config/config.json")
 const path = require('path')
-
+require('dotenv').config();
 
 const database  = databaseConfig['development']['database']
 const username  = databaseConfig['development']['username']
@@ -20,6 +20,18 @@ const sequelize = new Sequelize( database, username, password,  {
 
 async function create(){
         const pathModels = './models'
+
+const paths = ['firstname.js', 
+                'lastname.js', 
+                'middlename.js', 
+                'year.js',
+                'gender.js' , 
+                'annualsalary.js', 
+                'position.js',
+                'campus.js',
+                'department.js' , 
+                'campusdepartment.js',
+                'employee.js']
 
 let models = [ ];
 
@@ -77,7 +89,10 @@ try {
         
         }
 }
+if(process.env.ENV === 'dev'){
+        create()
+}
 
-// create()
+
 
 module.exports = sequelize
