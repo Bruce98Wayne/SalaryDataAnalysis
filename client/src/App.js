@@ -9,23 +9,11 @@ import Form from './form'
 class App extends Component {
 state = {
     data: null,
+    value: null
   };
 
   componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express })).then(()=> {console.log(this.state.data)})
-      .catch(err => console.log(err));
   }
-
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
 
   tempData = [ {state: "Alabama", population: 4822023, gdp: 157272},
    {state: "Alaska", population: 731449, gdp: 44732},
@@ -52,19 +40,32 @@ state = {
    {state: "Arkansas", population: 2949131, gdp: 93892},
    {state: "California", population: 38041430, gdp: 1751002}, ]
 
+    handleSubmit = async (event, value) => {
+    event.preventDefault()
+    const response = await fetch(`query?q=${this.state.value}`).
+    then(data => data.json()).
+    then((data)=>{this.setState({data})});
+  }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value})
+  }
+
   render() {
+    console.log(this.state.data)
     return (
       <div>
-        <Form />
+        <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         <div>
         <span className="label">SVG Elements</span>
-        <Pie
-          data={this.tempData1}
+        {this.state.data === null ? <br />:  <Pie
+          data={this.state.data}
           width={200}
           height={200}
           innerRadius={50}
           outerRadius={100}
-        />
+        />}
+       
       </div>
       <BarChart tempData={this.tempData} top={0}/>
       <ScatterPlot tempData={this.tempData} top={0}/>

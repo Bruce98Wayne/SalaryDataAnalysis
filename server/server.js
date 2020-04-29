@@ -6,6 +6,7 @@ const db = require('./db')
 const fs = require('fs')
 const csv = require('csv-parser');
 const models = require('./models')
+const {QueryTypes} = require('sequelize')
 const bodyParser = require('body-parser')
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -131,16 +132,15 @@ app.post('/load', async (req, res) => {
     
 });
 
-app.get('/query/', (req, res) => {
-  const query = req.query;
-  console.log("Query is: ", query)
-  // db.query(query, { type: QueryTypes.SELECT, logging: false }).then((data) => {
-  // console.log("Query is: ", req.query.q)
-  // console.log("Result is: ")
-      res.send(query) 
-       //   })
-  // res.send
+app.get('/query', (req, res) => {
+  const query = req.query.q;
+  console.log(query)
+  db.query(query, { type: QueryTypes.SELECT, logging: false }).then((data) => {
+    console.log(data)
+    res.send(data);
+  })
 });
+
 
 // create a GET route
 app.get('/', (req, res) => {

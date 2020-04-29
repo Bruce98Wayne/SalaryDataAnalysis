@@ -1,25 +1,25 @@
 import React, {Component} from "react";
 
 class Form extends React.Component {
-    constructor() {
-      super();
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    handleSubmit(event) {
-      event.preventDefault();
-    //   const data = new FormData(event.target);
-      
-      fetch('http://localhost:4000/query', {
-        method: 'GET'
-      });
+    constructor(props) {
+      super(props);
+      this.state = {
+        value: null,
+      }
     }
   
     render() {
+      //{const this1 = this}
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <label htmlFor="username">Enter query</label>
-          <input id="username" name="username" type="text" />
+          <input 
+            id="input" 
+            placeholder="Type something..." 
+            name="input"
+            type="text" 
+            onChange={this.props.handleChange}
+            />
           <button>Execute Query!</button>
         </form>
       );

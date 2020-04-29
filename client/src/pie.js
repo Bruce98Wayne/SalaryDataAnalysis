@@ -1,6 +1,7 @@
 
 import React from "react";
 import * as d3 from "d3";
+import d3tip from 'd3-tip'
 
 const Arc = ({ data, index, createArc, colors, format }) => (
   <g key={index} className="arc">
@@ -9,28 +10,27 @@ const Arc = ({ data, index, createArc, colors, format }) => (
       transform={`translate(${createArc.centroid(data)})`}
       textAnchor="middle"
       alignmentBaseline="middle"
-      fill="white"
+      fill="black"
       fontSize="10"
     >
-      {`${data.data.state}`}
+      {`${data.data.gender}`}
     </text>
-    {/* {console.log(createArc.centroid(data))}
-    <text
-      transform={`translate(${centroid})`}
-      textAnchor="middle"
-      alignmentBaseline="middle"
-      fill="white"
-      fontSize="10"
-    >
-      {`${data.value}`}
-    </text> */}
   </g>
+  // d3.select()
 );
 
 const Pie = props => {
+  const this1 = this
+  var tooltip = d3tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+  return "<span style='color:palevioletred'>" + d.state +": " + this1.numberWithCommas(d.population) +  "</span>";
+  })
+  d3.select('#pie').call(tooltip)
   const createPie = d3
     .pie()
-    .value(d => d.population)
+    .value(d => d.count)
     .sort(null);
 
   const createArc = d3
@@ -42,7 +42,8 @@ const Pie = props => {
   const format = d3.format(".2f");
   const data = createPie(props.data);
   return (
-    <svg width={props.width} height={props.height}>
+    <div id="pie">    
+      <svg width={props.width} height={props.height}>
       <g transform={`translate(${props.outerRadius} ${props.outerRadius})`}>
         {data.map((d, i) => (
           <Arc
@@ -56,6 +57,8 @@ const Pie = props => {
         ))}
       </g>
     </svg>
+    </div>
+
   );
 };
 
