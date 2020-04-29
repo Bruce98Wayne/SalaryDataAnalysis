@@ -57,7 +57,6 @@ state = {
       <div>
         <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         <div>
-        <span className="label">SVG Elements</span>
         {this.state.data === null ? <br />:  <Pie
           data={this.state.data}
           width={200}

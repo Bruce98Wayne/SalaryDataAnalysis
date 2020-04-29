@@ -57,6 +57,7 @@ const Pie = props => {
         ))}
       </g>
     </svg>
+    <span className="label">Distrtibtion of Emplopyees based on gender</span>
     </div>
 
   );
